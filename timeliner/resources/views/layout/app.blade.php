@@ -13,21 +13,25 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand bi bi-house-door" href="/">Home</a>
+            <a class="nav-link" href="/" style="width: 15%">
+                <img src="images/logo.svg" class="img-fluid" alt="Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                      <a class="nav-link bi bi-bookshelf" href="/timelines/">Timelines</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link bi bi-cart" href="">My Timelines</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="">Create a timeline</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link bi bi-menu-button-wide" href="/timelines"> My timelines</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link bi bi-plus-square" href=""> Create a timeline</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Profile</a>
+                    </li>
                 </ul>
             </div>
         </div>
