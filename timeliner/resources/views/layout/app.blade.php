@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                      <a class="nav-link bi bi-bookshelf" href="/timelines/">Timelines</a>
+                      <a class="nav-link bi bi-bookshelf" href="about">About</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link bi bi-cart" href="">My Timelines</a>
