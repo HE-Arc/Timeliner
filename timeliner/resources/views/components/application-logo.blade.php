@@ -1,6 +1,8 @@
-<svg width="155.908mm"
-   height="29.2769mm"
-   viewBox="0 0 442 83"
+<svg
+   viewBox="0 0 456 100"
+   width="200"
+   height="100"
+   spreadMethod = "reflect"
    version="1.1"
    id="svg3"
    sodipodi:docname="logo.svg"
