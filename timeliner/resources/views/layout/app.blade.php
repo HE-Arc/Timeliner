@@ -21,6 +21,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+
                     <li class="nav-item">
                         <a class="nav-link bi bi-menu-button-wide" href="/timelines"> My timelines</a>
                     </li>
