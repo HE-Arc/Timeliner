@@ -15,7 +15,7 @@ jobs:
     - name: installing dependencies and setup
       run: |
         cd /home/laravel/project/Timeliner/timeliner
-        composer install --optimize-autoloader --no-dev
+        composer install
         php artisan key:generate --force
         php artisan migrate --force
         php artisan db:seed --force
