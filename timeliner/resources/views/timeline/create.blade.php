@@ -4,7 +4,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-12">
-        <a class="btn btn-primary" href="TODO timeline.index"> Retour</a>
+        <a class="btn btn-primary" href="TODO: route('timeline.timelinelist')"> Retour</a>
     </div>
 </div>
 
