@@ -33,8 +33,14 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="container mt-3">
+                <!--  $slot -->
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+                @yield('content')
             </main>
         </div>
 
