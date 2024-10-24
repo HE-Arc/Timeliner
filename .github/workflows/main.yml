@@ -18,6 +18,5 @@ jobs:
         composer install
         php artisan key:generate --force
         php artisan migrate --force
-        php artisan db:seed --force
         npm install
         npm run build
