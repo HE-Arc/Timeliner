@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [TimelineController::class, 'fetchAllAvailable'])->name('home');
 
 Route::get('about', function () {
     return view('about');

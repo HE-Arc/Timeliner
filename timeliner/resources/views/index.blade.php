@@ -10,14 +10,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1>Timeliner</h1>
-                    <p class="lead">Main page, Hello World</p>
-                    @auth
-                    {{ __("You're logged in!") }}
-                    @endauth
+                    <p class="lead">Timeliner dashboard. Here you can access view timelines available to you, whether public or yours.</p>
 
-                    @guest
-                    {{ __("You're not logged in :(") }}
-                    @endguest
+                    @include("timeline.timelinelist", $timelines)
+
                 </div>
             </div>
         </div>
