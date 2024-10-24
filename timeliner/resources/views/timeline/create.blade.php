@@ -22,6 +22,12 @@
                             <label for="inputTitle">Titre</label>
                             <input type="text" name="title" class="form-control" id="inputTitle">
                         </div>
+                        <div class="form-group col-12">
+                            <!-- TODO accecpt only people that are in the database -->
+                            <!-- TODO accecpt several people  -->
+                            <label for="inputOwner">Propriétaire</label>
+                            <input type="text" name="title" class="form-control" id="inputOwner">
+                        </div>
                         <div class="row mt-3">
                             <div class="form-group col-6">
                                 <label for="selectStartDate">Date de départ</label>
@@ -33,7 +39,8 @@
                             </div>
                         </div>
                         <div class="form-group col-6">
-                            <button class="btn btn-primary" href="TODO timeline.edit/newly created timeline" type="submit" class="btn btn-primary mt-3">Terminer</button>
+                            <!-- button 'Ajouter' redirect to the detail of the newly created timeline -->
+                            <button class="btn btn-primary" href={{ route('timeline.timeline') }} type="submit" class="btn btn-primary mt-3">Ajouter</button>
                         </div>
                     </div>
                 </div>
