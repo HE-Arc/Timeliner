@@ -8,7 +8,7 @@ Route::get('/', [TimelineController::class, 'fetchAllAvailable'])->name('home');
 
 Route::get('about', function () {
     return view('about');
-});
+})->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
