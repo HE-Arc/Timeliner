@@ -23,8 +23,3 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//Route::resource('timeline', timelineController::class);
-
-Route::get('/timeline/timeline', function() {
-    return view('timeline.timeline');
-});
