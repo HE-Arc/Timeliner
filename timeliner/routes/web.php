@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TimelineController::class, 'fetchAllAvailable'])->name('home');
