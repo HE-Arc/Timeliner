@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Timeline;
+
 class TimelineController extends Controller
 {
     public function fetchAllAvailable()
     {
-        return view('index', ['timelines'=>[["Timeline1:title",false,"somedescription"],["Timeline2",true,"some other description"]]]);
+        $timelines = Timeline::all();
+        return view('index', ['timelines'=>$timelines]);
     }
 }
