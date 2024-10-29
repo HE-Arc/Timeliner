@@ -17,22 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        DB::table('users')->truncate();
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => '12345'
         ]);
 
-
-        DB::table('timelines')->insert([
-            'name' => "Timeline number one",
-            'private' => false,
-            'description' => "an important timeline",
-        ]);
-        DB::table('timelines')->insert([
-            'name' => "Anne's timeline",
-            'private' => true,
-            'description' => "Only for Anne's friends",
-        ]);
+        $this->call(TimelineSeeder::class);
     }
 }
