@@ -3,6 +3,6 @@
        reuse this element for index blade, user blade and my timelines blade -->
 
     @foreach ($timelines as $timeline)
-        @include("timeline.partials.timeline")
+        @include("timeline.partials.timeline", ["timeline"=>$timeline])
     @endforeach
 </div>

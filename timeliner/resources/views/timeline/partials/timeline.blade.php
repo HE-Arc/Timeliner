@@ -3,12 +3,12 @@
         <div class="col">
             <div class="card mb-4">
                 <div class="card-body">
-                    @if( $timeline[1]) <!-- if public, show title with a globe icon -->
-                    <h5 class="card-title bi bi-globe"> {{ $timeline[0] }}</h5>
+                    @if(! $timeline->private) <!-- if public, show title with a globe icon -->
+                    <h5 class="card-title bi bi-globe"> {{ $timeline->name}}</h5>
                     @else
-                    <h5 class="card-title bi bi-lock-fill"> {{ $timeline[0] }}</h5>
+                    <h5 class="card-title bi bi-lock-fill"> {{ $timeline->name }}</h5>
                     @endif
-                    <p class="card-text">{{$timeline[2]}}</p>
+                    <p class="card-text">{{$timeline->description}}</p>
                     <a href="#" class="btn btn-primary stretched-link">View</a>
                 </div>
             </div>

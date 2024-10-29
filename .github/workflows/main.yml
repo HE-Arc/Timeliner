@@ -1,0 +1,22 @@
+name: deployment
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+    - name: git pull
+      run: |
+        cd /home/laravel/project/Timeliner/timeliner
+        git fetch --all
+        git checkout main
+        git pull --all
+    - name: installing dependencies and setup
+      run: |
+        cd /home/laravel/project/Timeliner/timeliner
+        composer install
+        php artisan key:generate --force
+        php artisan migrate --force
+        npm install
+        npm run build
