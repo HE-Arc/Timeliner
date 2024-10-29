@@ -12,7 +12,7 @@
                     <h1>Timeliner</h1>
                     <p class="lead">Timeliner dashboard. Here you can access view timelines available to you, whether public or yours.</p>
 
-                    @include("timeline.timelinelist", $timelines)
+                    @include("timeline.partials.timelinelist", $timelines)
 
                 </div>
             </div>

@@ -32,9 +32,13 @@
                 </header>
             @endisset
 
-            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+
+            <!-- Page Content -
             <main class="container mt-3">
-                <!--  $slot -->
+                  $slot
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
@@ -42,6 +46,7 @@
                 @endif
                 @yield('content')
             </main>
+        -->
         </div>
 
          <!-- Bootstrap JS -->
