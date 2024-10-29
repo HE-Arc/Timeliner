@@ -43,6 +43,7 @@
                         </div>
                         <div class="form-group col-6">
                             <!-- TODO button 'Ajouter' redirect to the detail of the newly created timeline -->
+                            <!-- TODO toggle button (public/private) -->
                             <button class="btn btn-primary" href={{ route('timeline.create') }} type="submit" class="btn btn-primary mt-3">Ajouter</button>
                         </div>
                     </div>
