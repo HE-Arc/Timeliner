@@ -27,6 +27,6 @@ class TimelineController extends Controller
     {
         \App\Models\Timeline::create($request->all());
         // TODO solve mass assignement problem
-        return redirect()->route('timeline.timelinelist')->with('success','Timeline created successfully.');
+        return redirect()->route('home')->with('success','Timeline created successfully.');
     }
 }
