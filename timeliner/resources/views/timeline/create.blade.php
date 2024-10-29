@@ -3,11 +3,14 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-12">
-        <a class="btn btn-primary" href="TODO: route('timeline.timelinelist')"> Retour</a>
+        <!-- TODO fix route('timeline.fetchAllAvailable') -->
+        <a class="btn btn-primary" href= "TODO"> Retour</a>
     </div>
 </div>
 
-<form action="TODO" method="POST">
+
+<!-- TODO fixe timeline.store -->
+<form action="{{ route("timeline.store") }}" method="POST">
     @csrf
 
     <div class="row">
@@ -39,8 +42,8 @@
                             </div>
                         </div>
                         <div class="form-group col-6">
-                            <!-- button 'Ajouter' redirect to the detail of the newly created timeline -->
-                            <button class="btn btn-primary" href={{ route('timeline.timeline') }} type="submit" class="btn btn-primary mt-3">Ajouter</button>
+                            <!-- TODO button 'Ajouter' redirect to the detail of the newly created timeline -->
+                            <button class="btn btn-primary" href={{ route('timeline.create') }} type="submit" class="btn btn-primary mt-3">Ajouter</button>
                         </div>
                     </div>
                 </div>
