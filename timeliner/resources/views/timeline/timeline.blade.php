@@ -11,26 +11,20 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @auth
-                    Edit <button>fff</button>
+                    @if ($isOwner) <a href="timeline/{{ $timeline->id }}/edit" class="btn btn-primary">Edit</a> @endif
                     @endauth
 
                     <!-- Timeline show section -->
-                    <div class="w-[300px] h-[200px] overflow-x-auto border border-gray-300 rounded-lg p-2">
+                    <div class="w-[100%] overflow-x-auto border border-gray-300 rounded-lg p-2 bg-blue-100">
                         <!-- Inner content that is wider than the container -->
 
                         @foreach ($nodes as $node)
                             @include("timeline.partials.node", ["node"=>$node])
                         @endforeach
 
-                        <div class="w-[600px] flex space-x-4">
-                            <div class="p-4 bg-blue-200 rounded">Item 1</div>
-                            <div class="p-4 bg-green-200 rounded">Item 2</div>
-                            <div class="p-4 bg-yellow-200 rounded">Item 3</div>
-                            <div class="p-4 bg-red-200 rounded">Item 4</div>
-                            <div class="p-4 bg-purple-200 rounded">Item 5</div>
-                        </div>
+
                         <div>
-                            smth
+                            smth for test
                         </div>
                     </div>
 

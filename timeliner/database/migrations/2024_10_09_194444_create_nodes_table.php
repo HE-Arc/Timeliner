@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nodes', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->string('name');
+            $table->string('color');
+            $table->integer('timeline');
+
+            $table->foreign('timeline')->references('id')->on('timelines')->onDelete('cascade');
 
             $table->timestamps();
         });

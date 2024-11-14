@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Timeline;
 use App\Models\Ownership;
+use App\Models\Comment;
 use App\Models\Node;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,12 +31,17 @@ class TimelineController extends Controller
 
         if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
         {
-            $nodes = Node::where('timeline','=',$timeline->id);
+            $nodes = Node::where('timeline','=',$timeline->id)->get();
+
+            Log::info('nodes: '.$nodes->count());
+            $comments = Comment::where('timeline', '=', $timeline->id);
+
+            $isOwner = Ownership::find($timeline->id . Auth::user()->id);
 
             // TODO: find max and min and pass to the timeline
 
 
-            return view('timeline.timeline', ['timeline' => $timeline, 'nodes' => $nodes]);
+            return view('timeline.timeline', ['isOwner'=> $isOwner, 'timeline' => $timeline, 'nodes' => $nodes]);
         }
 
         return redirect()->route('timeline.index')

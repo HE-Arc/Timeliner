@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('milestones', function (Blueprint $table) {
             $table->id();
+            $table->string('description');
+            $table->date('date');
+            $table->integer('node');
+
+            $table->foreign('node')->references('id')->on('nodes')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
