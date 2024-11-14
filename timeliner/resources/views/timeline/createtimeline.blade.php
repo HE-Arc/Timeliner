@@ -36,13 +36,14 @@
                                         <button class="btn btn-primary" type="submit" class="btn btn-primary mt-3">+</button>
                                     </div>
                                     <div class="form-group col-6">
-
+                                        <label for="selectEndDate">add Milestone</label>
+                                        <button class="btn btn-primary" type="submit" class="btn btn-primary mt-3">+</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-12">
                                 <label for="inputStatus">Status (public/private)</label>
-                                <input id="inputStatus" type="checkbox" checked data-toggle="toggle" data-on="Public" data-off="Private" data-width="90">
+                                <input id="inputStatus" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
                             </div>
 
                             <div class="form-group col-6">
