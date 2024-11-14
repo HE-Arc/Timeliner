@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Timeline;
+use App\Models\Ownership;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => '12345'
+        ]);
+
+        User::factory()->create([
+            'name' => 'Other User',
+            'email' => 'test2@example.com',
+            'password' => '12345'
+        ]);
+
+        Ownership::factory()->create([
+            'id' => '22',
         ]);
 
         $this->call(TimelineSeeder::class);
