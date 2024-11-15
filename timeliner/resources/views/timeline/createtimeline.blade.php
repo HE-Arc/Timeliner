@@ -33,23 +33,27 @@
                                 <div class="row mt-3">
                                     <div class="form-group col-6">
                                         <label for="selectEndDate">add node</label>
-                                        <button class="btn btn-primary" type="submit" class="btn btn-primary mt-3">+</button>
+                                        <button class="btn btn-primary" id="node-creation-button" type="button" class="btn btn-primary mt-3">+</button>
                                     </div>
                                 </div>
+                                <div id="node-creation-form" style="display: none;">
+                                    @include('timeline.partials.nodecreate')
+                                </div>
+                                <script>
+                                    // JavaScript to toggle the div visibility
+                                    document.getElementById('node-creation-button').addEventListener('click', function() {
+                                        var hiddenForm = document.getElementById('node-creation-form');
+                                        hiddenForm.style.display = hiddenForm.style.display === 'none' ? 'block' : 'none';
+                                    });
+                                </script>
                             </div>
+
                             <div class="form-group col-12">
                                 <label for="inputStatus">Status (public/private)</label>
                                 <input id="inputStatus" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
-
-                                <div id="node-creation" class="form-group col-6">
-                                    <!-- TODO inclure nodecreate -->
-                                    test
-                                </div>
-
                             </div>
 
                             <div class="form-group col-6">
-                                <!-- TODO button 'Ajouter' redirect to the detail of the newly created timeline -->
                                 <button class="btn btn-primary" href={{ route('timeline.create') }} type="submit" class="btn btn-primary mt-3">Add</button>
                             </div>
                             <div class="form-group col-6">
