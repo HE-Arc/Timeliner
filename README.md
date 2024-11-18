@@ -12,22 +12,23 @@ The goal is to create a web application using the Laravel framework, allowing an
     ```
     cp .env.example .env
     ```
-4. Install dependencies
+3. Install dependencies
    
     ```
     composer install
     npm install
     ```
-5. Configure project (to execute in the workspace)
+4. Configure project (to execute in the workspace)
 
     ```
     php artisan key:generate
     php artisan migrate
     php artisan db:seed
     ```
-6. Start servers
+5. Start servers
 
     ```
     php artisan serve
     npm run dev
     ```
+6. Access website on the following URL: http://localhost:8000
