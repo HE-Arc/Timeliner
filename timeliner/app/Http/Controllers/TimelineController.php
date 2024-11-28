@@ -26,8 +26,8 @@ class TimelineController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:1|max:25',
-            'description' => 'required|min:1|max:100',
+            'name' => 'required|max:50',
+            'description' => 'required|max:200',
             'private' => 'required|boolean'
         ]);
 
