@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    @vite(['resources/js/timelinelistener.js', 'resources/css/timelinestyle.css'])
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,18 +17,15 @@
                     @endauth
 
                     <!-- Timeline show section -->
-                    <div class="w-[100%] overflow-x-auto border border-gray-300 rounded-lg p-2 bg-blue-100">
+                    <div class="timeline w-[100%] overflow-x-auto border border-gray-300 rounded-lg p-2 bg-blue-100">
                         <!-- Inner content that is wider than the container -->
 
-                        @foreach ($nodes as $node)
-                            @include("timeline.partials.node", ["node"=>$node])
-                        @endforeach
 
-
-                        <div>
-                            smth for test
-                        </div>
+                            @foreach ($nodes as $node)
+                                @include("timeline.partials.node", ["node"=>$node])
+                            @endforeach
                     </div>
+
 
                     <!-- Comments to this timeline section -->
 

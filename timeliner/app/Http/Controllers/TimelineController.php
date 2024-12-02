@@ -31,15 +31,18 @@ class TimelineController extends Controller
 
         if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
         {
-            $nodes = Node::where('timeline','=',$timeline->id)->get();
+            $nodes = Node::where('timeline','=',$timeline->id)
+                ->with('milestones')
+                ->get();
 
             Log::info('nodes: '.$nodes->count());
             $comments = Comment::where('timeline', '=', $timeline->id);
 
-            $isOwner = Ownership::find($timeline->id . Auth::user()->id);
-
-            // TODO: find max and min and pass to the timeline
-
+            $isOwner = false;
+            if (Auth::check())
+            {
+                $isOwner = Ownership::find($timeline->id . Auth::user()->id);
+            }
 
             return view('timeline.timeline', ['isOwner'=> $isOwner, 'timeline' => $timeline, 'nodes' => $nodes]);
         }
