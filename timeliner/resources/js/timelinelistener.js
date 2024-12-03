@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nodes = document.querySelectorAll('.node');
     const dates = [];
 
+    if (nodes.length === 0) {
+        console.warn("No nodes found.");
+        return;
+    }
+
     // Gather all milestone dates for range calculation
     nodes.forEach(node => {
         const milestones = node.querySelectorAll('.milestone');

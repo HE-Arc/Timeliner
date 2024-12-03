@@ -17,7 +17,7 @@
                     @endauth
 
                     <!-- Timeline show section -->
-                    <div class="timeline w-[100%] overflow-x-auto border border-gray-300 rounded-lg p-2 bg-blue-100">
+                    <div class="timeline w-[100%] h-[50%] overflow-x-auto border border-gray-300 rounded-lg p-2 bg-blue-100">
                         <!-- Inner content that is wider than the container -->
 
 
