@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Timeline;
+use App\Models\Ownership;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,8 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         DB::table('users')->truncate();
 
         User::factory()->create([
@@ -25,6 +23,18 @@ class DatabaseSeeder extends Seeder
             'password' => '12345'
         ]);
 
+        User::factory()->create([
+            'name' => 'Other User',
+            'email' => 'test2@example.com',
+            'password' => '12345'
+        ]);
+
+        Ownership::create([
+            'id' => '22',
+        ]);
+
         $this->call(TimelineSeeder::class);
+        $this->call(NodeSeeder::class);
+        $this->call(MilestoneSeeder::class);
     }
 }

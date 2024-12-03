@@ -9,7 +9,7 @@
                     <h5 class="card-title bi bi-lock-fill"> {{ $timeline->name }}</h5>
                     @endif
                     <p class="card-text">{{$timeline->description}}</p>
-                    <a href="#" class="btn btn-primary stretched-link">View</a>
+                    <a href="timeline/{{ $timeline->id }}" class="btn btn-primary stretched-link">View</a>
                 </div>
             </div>
         </div>

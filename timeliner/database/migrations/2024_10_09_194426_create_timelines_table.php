@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('timelines', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->string('name');
             $table->boolean('private');
             $table->string('description');
