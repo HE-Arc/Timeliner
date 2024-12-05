@@ -26,6 +26,11 @@
                             @endforeach
                     </div>
 
+                    <label for="timelineSlider">Adjust Timeline Scaling</label>
+                    <input type="range" id="timelineSlider" min="30" max="200" value="100" step="1">
+                    <span id="timelineWidthValue">100</span>
+
+
 
                     <!-- Comments to this timeline section -->
 

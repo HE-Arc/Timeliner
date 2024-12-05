@@ -10,17 +10,22 @@
     background-repeat: repeat-x;
     background-position-y: center;
     position: relative;
+    display: flex;
+    /*width: 100%;*/
+    overflow: visible;
 }
 
 .milestones-container {
-
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: auto;
 }
 
 .milestone {
-    flex-shrink: 0;
-    display: inline-block;
+    /*flex-shrink: 0;*/
+    display: flex;
     cursor: pointer;
     position: relative;
 }
@@ -54,7 +59,6 @@
     z-index: 100;
 }
 
-/* When the milestone is hovered, display the info */
 .milestone:hover .milestone-info {
     display: block;
 }
