@@ -32,8 +32,8 @@
                             <div class="form-group col-12">
                                 <div class="row mt-3">
                                     <div class="form-group col-6">
-                                        <label for="selectEndDate">add node</label>
-                                        <button class="btn btn-primary" id="node-creation-button" type="button" class="btn btn-primary mt-3">+</button>
+                                        <label for="node-creation-button">add node</label>
+                                        <button class="btn btn-primary" name="node-creation-button" id="node-creation-button" type="button" class="btn btn-primary mt-3">+</button>
                                     </div>
                                 </div>
                                 <div id="node-creation-form" style="display: none;">
@@ -42,15 +42,22 @@
                                 <script>
                                     // JavaScript to toggle the div visibility
                                     document.getElementById('node-creation-button').addEventListener('click', function() {
-                                        var hiddenForm = document.getElementById('node-creation-form');
+                                        let hiddenForm = document.getElementById('node-creation-form');
                                         hiddenForm.style.display = hiddenForm.style.display === 'none' ? 'block' : 'none';
                                     });
                                 </script>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="inputStatus">Status (public/private)</label>
-                                <input id="inputStatus" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
+                                <label for="accesibility">Status (public/private)</label>
+                                <input id="accesibility" name="private" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
+                                <!-- the following hidden field converts the checkbox 'accesibility' value to boolean -->
+                                <input type="hidden" id="toBoolean-field" value/>
+                                <!-- script>
+                                    $('accesibility').change(function() {
+                                        document.getElementById('toBoolean-field') = document.getElementById('accesibility').checked;
+                                    })
+                                </script -->
                             </div>
 
                             <div class="form-group col-6">

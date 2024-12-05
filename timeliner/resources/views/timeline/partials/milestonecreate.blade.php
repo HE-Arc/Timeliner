@@ -18,12 +18,28 @@
             <th>Date</th>
         </tr>
     </div>
-    <script>
-        document.getElementById("milestone-create-button").addEventListener('click', function() {
 
+    <div class="form-group col-6">
+        <button class="btn btn-primary" id="milestone-delete-button" style="display: none;" type="button" class="btn btn-primary mt-3">delete Milestone</button>
+    </div>
+    <script>
+        // JavaScript to toggle the div visibility
+        document.getElementById('milestone-create-button').addEventListener('click', function() {
+
+        });
+    </script>
+    <script>
+        let id = 0;
+        document.getElementById("milestone-create-button").addEventListener('click', function() {
+            // add a milestone to the milestone list
+
+            // declare new row of milestone table
             let tr = document.createElement("tr");
             let td_date = document.createElement("td");
             let td_desc = document.createElement("td");
+
+            // set the attribute of the new milestone
+            //tr.setAttribute("id", "row-" + i);
 
             let date = document.getElementById('milestone-datePicker').value;
             let description = document.getElementById('milestone-description-field').value;
@@ -34,7 +50,11 @@
             tr.append(td_desc)
             tr.append(td_date)
 
-            document.getElementById("milestone-list").append(tr);
-        });
+            document.getElementById('milestone-list').append(tr);
+
+            // show delete milestone button
+            var hiddenForm = document.getElementById('milestone-delete-button');
+            hiddenForm.style.display = 'block';
+            });
     </script>
 </form>

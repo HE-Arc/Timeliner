@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
+use function Psy\debug;
 
 class TimelineController extends Controller
 {
@@ -58,6 +59,11 @@ class TimelineController extends Controller
 
     public function store(Request $request)
     {
+        
+        $request->merge([
+            'private' => $request->has('private'),
+        ]);
+
         $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:200',
