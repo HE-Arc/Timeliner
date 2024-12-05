@@ -10,4 +10,5 @@
         <!-- href= route('milestone.create') -->
             <button class="btn btn-primary" type="button" class="btn btn-primary mt-3">Create Milestone</button>
     </div>
+    <!-- TODO add milestone liste + delete -->
 </form>
