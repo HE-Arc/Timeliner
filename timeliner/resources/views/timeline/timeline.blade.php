@@ -30,13 +30,20 @@
                     <!-- Comments to this timeline section -->
 
                     <div>
-                        <h2>
-                            Comments
-                        </h2>
-
+                        <h2>Comments</h2>
                         <!-- Add comment to this timeline section -->
                         @auth
-                        Add comment
+                        <button class="btn btn-primary" onclick="document.getElementById('idComment').classList.toggle('hidden')">Add comment</button>
+                        <div id="idComment" class="hidden">
+                            <form action="{{ route("comment.store") }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
+                                <div class="form-group">
+                                    <label for="inputComment">New comment</label>
+                                    <textarea name="comment" rows="5" class="form-control" id="inputComment"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
                         @endauth
                     </div>
 
