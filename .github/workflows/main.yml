@@ -20,3 +20,4 @@ jobs:
         php artisan migrate --force
         npm install
         npm run build
+        npm run dev
