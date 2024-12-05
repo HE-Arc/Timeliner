@@ -26,11 +26,7 @@ class MilestoneSeeder extends Seeder
         ];
 
         foreach ($milestones as $milestone) {
-            Milestone::create(array(
-                'description' => $milestone['description'],
-                'date' => $milestone['date'],
-                'node' => $milestone['node']
-            ));
+            Milestone::create($milestone);
         }
     }
 }
