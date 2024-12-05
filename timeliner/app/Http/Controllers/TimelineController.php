@@ -31,15 +31,18 @@ class TimelineController extends Controller
 
         if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
         {
-            $nodes = Node::where('timeline','=',$timeline->id)->get();
+            $nodes = Node::where('timeline','=',$timeline->id)
+                ->with('milestones')
+                ->get();
 
             Log::info('nodes: '.$nodes->count());
             $comments = Comment::where('timeline', '=', $timeline->id);
 
-            $isOwner = Ownership::find($timeline->id . Auth::user()->id);
-
-            // TODO: find max and min and pass to the timeline
-
+            $isOwner = false;
+            if (Auth::check())
+            {
+                $isOwner = Ownership::find($timeline->id . Auth::user()->id);
+            }
 
             return view('timeline.timeline', ['isOwner'=> $isOwner, 'timeline' => $timeline, 'nodes' => $nodes]);
         }
@@ -56,8 +59,8 @@ class TimelineController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:1|max:25',
-            'description' => 'required|min:1|max:100',
+            'name' => 'required|max:50',
+            'description' => 'required|max:200',
             'private' => 'required|boolean'
         ]);
 

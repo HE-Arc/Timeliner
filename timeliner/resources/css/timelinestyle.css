@@ -1,0 +1,85 @@
+.timeline
+{
+    position: relative;
+    z-index: 90;
+}
+
+.node
+{
+    background-image: linear-gradient(to top, transparent 40%, var(--line-color) 10%, transparent 50%);
+    background-repeat: repeat-x;
+    background-position-y: center;
+    position: relative;
+}
+
+.milestones-container {
+
+    display: flex;
+    align-items: center;
+}
+
+.milestone {
+    flex-shrink: 0;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.milestone-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #313131;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.milestone-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Hidden content - info panel */
+.milestone-info {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 250px;
+    width: auto;
+    z-index: 100;
+}
+
+/* When the milestone is hovered, display the info */
+.milestone:hover .milestone-info {
+    display: block;
+}
+
+/* Styling for the content panel */
+.milestone-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+/* Optional: Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+

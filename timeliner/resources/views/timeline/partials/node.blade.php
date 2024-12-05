@@ -1,7 +1,13 @@
-<div class="w-[auto] flex space-x-4">
-    <div class="p-4 rounded" style="background-color: {{$node->color}}">{{$node->name}}</div>
-    <div class="p-4 bg-green-200 rounded">Item 2</div>
-    <div class="p-4 bg-yellow-200 rounded">Item 3</div>
-    <div class="p-4 bg-red-200 rounded">Item 4 of the very long text specifically to make the node element overflow the timeline for the sake of tests</div>
-    <div class="p-4 bg-purple-200 rounded">Item 5</div>
+
+<!-- TODO : make width be fetched and calculated proportionately -->
+<div class="node w-[100%] flex space-x-4" style="--line-color: {{$node->color}};" data-milestones="{{$node->milestones}}">
+    <div class="p-4 w-[100px] rounded" style="background-color: {{$node->color}}">{{$node->name}}</div>
+    <!-- TODO : make milestones evenly distributed over the node and aligned -->
+    <div class="milestones-container flex" data-min-date="{{ $node->milestones->min('date') }}" data-max-date="{{ $node->milestones->max('date') }}">
+
+    @foreach($node->milestones as $milestone)
+            @include("timeline.partials.milestone", ["milestone"=>$milestone])
+    @endforeach
+
+    </div>
 </div>
