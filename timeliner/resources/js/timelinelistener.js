@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+
     // Calculate date range for proportional spacing
     const minDate = new Date(Math.min(...dates));
     const maxDate = new Date(Math.max(...dates));
