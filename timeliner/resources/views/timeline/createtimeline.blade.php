@@ -49,15 +49,9 @@
                             </div>
 
                             <div class="form-group col-12">
+                                <!-- TODO test value of private in DB -->
                                 <label for="accesibility">Status (public/private)</label>
                                 <input id="accesibility" name="private" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
-                                <!-- the following hidden field converts the checkbox 'accesibility' value to boolean -->
-                                <input type="hidden" id="toBoolean-field" value/>
-                                <!-- script>
-                                    $('accesibility').change(function() {
-                                        document.getElementById('toBoolean-field') = document.getElementById('accesibility').checked;
-                                    })
-                                </script -->
                             </div>
 
                             <div class="form-group col-6">
