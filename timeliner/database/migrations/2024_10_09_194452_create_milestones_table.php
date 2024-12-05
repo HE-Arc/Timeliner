@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->date('date');
-            $table->integer('node');
+            $table->unsignedBigInteger('node');
 
             $table->foreign('node')->references('id')->on('nodes')->onDelete('cascade');
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('color');
-            $table->integer('timeline');
+            $table->unsignedBigInteger('timeline');
 
             $table->foreign('timeline')->references('id')->on('timelines')->onDelete('cascade');
 

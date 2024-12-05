@@ -6,6 +6,7 @@ use App\Models\Timeline;
 use App\Models\Node;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class NodeSeeder extends Seeder
 {
@@ -14,7 +15,9 @@ class NodeSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Node::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $nodes = [
             ['name' => "Jules' concerts", 'color' => '#ffc0cb', 'timeline' => "1"],
@@ -24,11 +27,7 @@ class NodeSeeder extends Seeder
         ];
 
         foreach ($nodes as $node) {
-            Node::create(array(
-                'name' => $node['name'],
-                'color' => $node['color'],
-                'timeline' => $node['timeline']
-            ));
+            Node::create($node);
         }
     }
 }
