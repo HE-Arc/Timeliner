@@ -7,6 +7,20 @@
 
     @vite(['resources/js/timelinelistener.js', 'resources/css/timelinestyle.css'])
 
+    @if (session('success'))
+        <div class="alert alert-success">
+                {{ session('success') }}
+        </div>
+    @elseif($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -28,25 +42,28 @@
 
 
                     <!-- Comments to this timeline section -->
-
                     <div>
                         <h2>Comments</h2>
-                        <!-- Add comment to this timeline section -->
-                        @auth
-                        <button class="btn btn-primary" onclick="document.getElementById('idComment').classList.toggle('hidden')">Add comment</button>
-                        <div id="idComment" class="hidden">
-                            <form action="{{ route("comment.store") }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
-                                <div class="form-group">
-                                    <label for="inputComment">New comment</label>
-                                    <textarea name="comment" rows="5" class="form-control" id="inputComment"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add</button>
-                            </form>
-                        @endauth
-                    </div>
 
+                        <!-- Add comment to this timeline section -->
+                        <button class="btn btn-primary" onclick="document.getElementById('addComment').classList.toggle('hidden')">Add comment</button>
+
+                        <form id="addComment" class ="hidden" action="{{ route("comment.store") }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <div class="form-group">
+                                <label for="inputComment">New comment</label>
+                                <textarea name="comment" rows="5" class="form-control" id="inputComment">{{ old('comment') }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+ 
+                        <!-- Show comments to this timeline section -->
+                        @foreach ($comments as $comment)
+                            @include("timeline.partials.comment", ["comment"=>$comment])
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
