@@ -46,7 +46,7 @@
                         <h2>Comments</h2>
 
                         <!-- Add comment to this timeline section -->
-                        <button class="btn btn-primary" onclick="document.getElementById('addComment').classList.toggle('hidden')">Add comment</button>
+                        <button class="btn btn-primary bi bi-plus-lg" onclick="document.getElementById('addComment').classList.toggle('hidden')"> Add comment</button>
 
                         <form id="addComment" class ="hidden" action="{{ route("comment.store") }}" method="POST">
                             @csrf
