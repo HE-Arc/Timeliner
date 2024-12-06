@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('users')->truncate();   
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         User::factory()->create([
             'name' => 'Test User',
@@ -34,6 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(TimelineSeeder::class);
+        $this->call(CommentSeeder::class);
         $this->call(NodeSeeder::class);
         $this->call(MilestoneSeeder::class);
     }
