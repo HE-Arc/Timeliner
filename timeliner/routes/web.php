@@ -28,7 +28,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('timeline', TimelineController::class);
-
-Route::Resource('comment', CommentController::class)->only(['store']);
-Route::Resource('comment', CommentController::class)->only(['destroy']);
-Route::Resource('comment', CommentController::class)->only(['update']);
+Route::resource('comment', CommentController::class)->only(['store', 'destroy', 'update']);

@@ -33,6 +33,8 @@ class CommentController extends Controller
     {
         $request->validate([
             'comment' => 'required|max:1000',
+            'user_id' => 'required',
+            'timeline_id' => 'required',
         ]);
 
         $comment->update($request->all());

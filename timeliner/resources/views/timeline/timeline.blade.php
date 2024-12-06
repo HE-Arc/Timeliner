@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    @vite(['resources/js/timelinelistener.js', 'resources/css/timelinestyle.css'])
+    @vite(['resources/js/timelinelistener.js', 'resources/css/timelinestyle.css', 'resources/js/formfunctions.js'])
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -27,7 +27,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @auth
-                    @if ($isOwner) <a href="timeline/{{ $timeline->id }}/edit" class="btn btn-primary">Edit</a> @endif
+                    @if ($isOwner) <a href="timeline/{{ $timeline->id }}/edit" class="btn btn-primary bi bi-pencil"> Edit</a> @endif
                     @endauth
 
                     <!-- Timeline show section -->
@@ -46,7 +46,7 @@
                         <h2>Comments</h2>
 
                         <!-- Add comment to this timeline section -->
-                        <button class="btn btn-primary bi bi-plus-lg" onclick="document.getElementById('addComment').classList.toggle('hidden')"> Add comment</button>
+                        <button class="btn btn-primary bi bi-plus-lg toggle-button" data-target="addComment"> Add comment</button>
 
                         <form id="addComment" class ="hidden" action="{{ route("comment.store") }}" method="POST">
                             @csrf
@@ -56,7 +56,7 @@
                                 <label for="inputComment">New comment</label>
                                 <textarea name="comment" rows="5" class="form-control" id="inputComment">{{ old('comment') }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary bi bi-plus-lg"> Add</button>
                         </form>
  
                         <!-- Show comments to this timeline section -->
