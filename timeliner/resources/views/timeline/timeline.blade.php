@@ -5,8 +5,6 @@
         </h2>
     </x-slot>
 
-    @vite(['resources/js/timelinelistener.js', 'resources/css/timelinestyle.css', 'resources/js/formfunctions.js'])
-
     @if (session('success'))
         <div class="alert alert-success">
                 {{ session('success') }}

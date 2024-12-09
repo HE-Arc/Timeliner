@@ -1,5 +1,3 @@
-@vite(['resources/js/formfunctions.js'])
-
 <div class="card mb-3">
     <h5 class="card-header">{{ $comment->user->name }}</h5>
     <div class="card-body">
