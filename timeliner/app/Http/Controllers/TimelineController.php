@@ -37,7 +37,10 @@ class TimelineController extends Controller
                 ->get();
 
             Log::info('nodes: '.$nodes->count());
-            $comments = Comment::where('timeline', '=', $timeline->id);
+
+            $comments = Comment::where('timeline_id', '=', $timeline->id)
+                ->with('user')
+                ->get();
 
             $isOwner = false;
             if (Auth::check())
@@ -45,7 +48,7 @@ class TimelineController extends Controller
                 $isOwner = Ownership::find($timeline->id . Auth::user()->id);
             }
 
-            return view('timeline.timeline', ['isOwner'=> $isOwner, 'timeline' => $timeline, 'nodes' => $nodes]);
+            return view('timeline.timeline', ['isOwner'=> $isOwner, 'timeline' => $timeline, 'nodes' => $nodes, 'comments' => $comments]);
         }
 
         return redirect()->route('timeline.index')
