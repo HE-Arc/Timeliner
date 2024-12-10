@@ -20,6 +20,10 @@ class NodeController extends Controller
 
     public function store(Request $request)
     {
-       // Store node
+        $request->validate([
+            'name' => 'required|max:200'
+        ]);
+
+        $node = Node::create($request->all());
     }
 }

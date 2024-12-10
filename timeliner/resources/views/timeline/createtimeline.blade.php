@@ -7,7 +7,6 @@
         </h2>
     </x-slot>
 
-<!-- TODO fixe timeline.store -->
     <form action="{{ route("timeline.store") }}" method="POST">
         @csrf
 
