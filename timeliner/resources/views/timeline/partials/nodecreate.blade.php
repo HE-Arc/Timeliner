@@ -21,8 +21,6 @@
             </div>
         </div>
 
-
-
         <script>
             // JavaScript to toggle the div visibility
             document.getElementById('milestone-creation-button').addEventListener('click', function() {

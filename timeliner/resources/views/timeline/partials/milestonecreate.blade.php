@@ -8,11 +8,11 @@
         <input type="text" id="milestone-description-field" name="Decription" class="form-control" id="milestoneDesc">
         <div class="row mt-3">
             <!-- href= route('milestone.create') -->
-            <button class="btn btn-primary" id="milestone-create-button" type="button" class="btn btn-primary mt-3">Create Milestone</button>
+            <button id="milestone-create-button" type="button" class="btn btn-primary mt-3">Create Milestone</button>
         </div>
 
         <!-- TODO delete milestone -->
-        <div id="milestone-list">
+        <div id="milestone-list" class="col-12">
             <tr>
                 <th>Description</th>
                 <th>Date</th>
@@ -20,14 +20,9 @@
         </div>
     </div>
 
-
-    <div class="form-group col-6">
-        <button class="btn btn-primary" id="milestone-delete-button" style="display: none;" type="button" class="btn btn-primary mt-3">delete</button>
-    </div>
-
     <script>
         // add element to the list of milestone
-        let i = 0;
+        let i = 0; // milestone index
         document.getElementById("milestone-create-button").addEventListener('click', function() {
             // add a milestone to the milestone list
 
@@ -35,25 +30,45 @@
             let tr = document.createElement("tr");
             let td_date = document.createElement("td");
             let td_desc = document.createElement("td");
+            let td_delete = document.createElement("td");
 
             // set the attribute of the new milestone
-            tr.setAttribute("id", "row-" + i);
-            ++i;
+            let row_id = "milestone-" + i;
+            tr.setAttribute("id", row_id);
 
+            // create conteant of the table
+            // recover data from input
             let date = document.getElementById('milestone-datePicker').value;
             let description = document.getElementById('milestone-description-field').value;
 
+            // create delete button
+            let delete_button = document.createElement('button');
+            let button_id = "milestone-delete-button-" + i;
+            delete_button.setAttribute("type", "button");
+            delete_button.setAttribute("class", "btn btn-primary mt-2");
+            delete_button.setAttribute("id", button_id);
+            delete_button.innerHTML += 'delete';
+
+            // add listener to delete_button
+            delete_button.addEventListener('click', function() {
+                document.getElementById(row_id).remove()
+            });
+
             td_date.append(date)
             td_desc.append(description)
+            td_delete.append(delete_button)
 
             tr.append(td_desc)
             tr.append(td_date)
+            tr.append(td_delete)
 
             document.getElementById('milestone-list').append(tr);
 
             // show delete milestone button
             var hiddenForm = document.getElementById('milestone-delete-button');
             hiddenForm.style.display = 'block';
+
+            ++i;
             });
     </script>
 </form>
