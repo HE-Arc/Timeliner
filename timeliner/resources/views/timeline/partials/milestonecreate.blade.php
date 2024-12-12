@@ -11,20 +11,24 @@
             <button id="milestone-create-button" type="button" class="btn btn-primary mt-3">Create Milestone</button>
         </div>
 
-        <!-- TODO delete milestone -->
-        <div id="milestone-list" class="col-12">
-            <tr>
-                <th>Description</th>
-                <th>Date</th>
-            </tr>
+        <div class="col-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="milestone-list">
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <script>
+    <script language="javascript">
         // add element to the list of milestone
         let i = 0; // milestone index
         document.getElementById("milestone-create-button").addEventListener('click', function() {
-            // add a milestone to the milestone list
+                // add a milestone to the milestone list
 
             // declare new row of milestone table
             let tr = document.createElement("tr");
@@ -64,11 +68,7 @@
 
             document.getElementById('milestone-list').append(tr);
 
-            // show delete milestone button
-            var hiddenForm = document.getElementById('milestone-delete-button');
-            hiddenForm.style.display = 'block';
-
             ++i;
-            });
+        });
     </script>
 </form>
