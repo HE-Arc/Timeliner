@@ -4,7 +4,7 @@ function toggleElementById(id) {
 }
 
 function confirmDelete() {
-    return confirm('Are you sure you want to delete this?');
+    return confirm('Are you sure you want to delete this? This action cannot be undone.');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
