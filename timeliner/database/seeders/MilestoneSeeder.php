@@ -20,9 +20,10 @@ class MilestoneSeeder extends Seeder
         $milestones = [
             ['description' => "Summer camp gathering", 'date' => Carbon::parse('2000-01-01'), 'node' => "1"],
             ['description' => "Bach play competition", 'date' => Carbon::parse('2002-08-01'), 'node' => "1"],
+            ['description' => "Vivaldi competition", 'date' => Carbon::parse('2001-01-07'), 'node' => "2"],
             ['description' => "Bach play competition", 'date' => Carbon::parse('2002-08-01'), 'node' => "2"],
             ['description' => "Lima concerto", 'date' => Carbon::parse('2002-10-01'), 'node' => "2"],
-            ['description' => "Anne started practicing", 'date' => Carbon::parse('2013-07-07'), 'node' => "3"],
+            ['description' => "Anne started practicing", 'date' => Carbon::parse('2013-07-07'), 'node' => "4"],
         ];
 
         foreach ($milestones as $milestone) {

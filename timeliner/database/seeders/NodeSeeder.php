@@ -22,6 +22,7 @@ class NodeSeeder extends Seeder
         $nodes = [
             ['name' => "Jules' concerts", 'color' => '#ffc0cb', 'timeline' => "1"],
             ['name' => "Anne's concerts", 'color' => '#bdb76b', 'timeline' => "1"],
+            ['name' => "John's concerts", 'color' => '#bbb76b', 'timeline' => "1"],
             ['name' => "Violin", 'color' => '#40e0d0', 'timeline' => "2"],
             ['name' => "Piano", 'color' => '#49796b', 'timeline' => "2"],
         ];

@@ -53,7 +53,7 @@ class TimelineController extends Controller
         }
 
         return redirect()->route('timeline.index')
-            ->with('success',"You don't have access.");
+            ->withErrors(["You don't have access."]);
     }
 
     public function create()
