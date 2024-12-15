@@ -1,7 +1,11 @@
 import './bootstrap';
 
 import './timelinelistener';
+import '../css/timelinestyle.css';
+
 import './formfunctions';
+import './createformfunctions';
+
 
 import Alpine from 'alpinejs';
 

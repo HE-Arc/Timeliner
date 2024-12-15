@@ -40,9 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const minDate = new Date(Math.min(...dates));
         const maxDate = new Date(Math.max(...dates));
 
-        console.log("mindate " + minDate);
-        console.log("maxdate " + maxDate);
-
         nodes.forEach(node => {
             const milestones = node.querySelectorAll('.milestone');
 
