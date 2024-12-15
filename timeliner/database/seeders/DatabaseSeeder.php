@@ -15,7 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('PRAGMA foreign_keys=OFF;');
         DB::table('users')->truncate();
+        DB::table('timelines')->truncate();
+        DB::table('nodes')->truncate();
+        DB::table('milestones')->truncate();
+        DB::table('ownerships')->truncate();
 
         User::factory()->create([
             'name' => 'Test User',
@@ -36,5 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TimelineSeeder::class);
         $this->call(NodeSeeder::class);
         $this->call(MilestoneSeeder::class);
+
+        DB::statement('PRAGMA foreign_keys=ON;');
     }
 }
