@@ -73,7 +73,9 @@ function addMilestone(milestone_list_id, nodeIndex, nodeMilestoneCount) {
 }
 
 // add element to the list of milestone
-document.getElementById("node-create-button").addEventListener('click', function() {
+const nodeCreateButton = document.getElementById("node-create-button");
+if (nodeCreateButton) {
+    nodeCreateButton.addEventListener('click', function() {
 
     // recover the node table
     let node_table = document.getElementById('node-list');
@@ -173,4 +175,5 @@ document.getElementById("node-create-button").addEventListener('click', function
     node_table.append(tr_node_form);
     node_table.append(tr_milestone_table);
     ++ni;
-});
+})
+};

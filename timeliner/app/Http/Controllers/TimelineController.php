@@ -87,7 +87,7 @@ class TimelineController extends Controller
 
                 $node = Node::create([
                     'name'=>$nodeData['name'],
-                    'color'=>'#FFFFFF',
+                    'color'=>'#FFFFFF', // default color white, TODO: color picker
                     'timeline'=>$timeline->id
                 ]);
 

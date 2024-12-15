@@ -1,5 +1,4 @@
-<form> <!-- action="route("node.store")..." -->
-    @csrf
+@csrf
     <div class="form-group ">
 
         <!-- add node to list -->
@@ -15,4 +14,3 @@
         <script>
         </script>
     </div>
-</form>

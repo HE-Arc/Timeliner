@@ -17,6 +17,6 @@ class Node extends Model
 
     public function milestones()
     {
-        return $this->hasMany(Milestone::class, 'node'); //->sortBy('date');
+        return $this->hasMany(Milestone::class, 'node')->orderBy('date');
     }
 }
