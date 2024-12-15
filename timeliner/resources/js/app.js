@@ -2,6 +2,7 @@ import './bootstrap';
 
 import './timelinelistener';
 import './formfunctions';
+import './createformfunctions';
 
 import '../css/timelinestyle.css';
 

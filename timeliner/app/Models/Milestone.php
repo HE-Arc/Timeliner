@@ -12,5 +12,6 @@ class Milestone extends Model
     protected $fillable = [
         'description',
         'date',
+        'node',
     ];
 }

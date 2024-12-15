@@ -22,9 +22,10 @@
                                 <label for="inputTitle">Name</label>
                                 <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="inputTitle">
                             </div>
+
+                            <!-- TODO accecpt several people as owners (fields for adding owners) -->
+
                             <div class="form-group col-12">
-                                <!-- TODO accecpt only people that are in the database -->
-                                <!-- TODO accecpt several people  -->
                                 <label for="inputDescription">Description</label>
                                 <input type="text" name="description" value="{{ old('description') }}" class="form-control" id="inputDescription">
                             </div>
@@ -38,7 +39,6 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <!-- TODO test value of private in DB -->
                                 <label for="accesibility">Status (public/private)</label>
                                 <input id="accesibility" name="private" type="checkbox" checked data-toggle="toggle" data-offstyle="secondary" data-on="Public" data-off="Private" data-width="90">
                             </div>
