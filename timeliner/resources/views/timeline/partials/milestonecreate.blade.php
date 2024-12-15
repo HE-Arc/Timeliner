@@ -1,17 +1,17 @@
 
-<form> <!-- action="route("milestone.store")..." -->
-    @csrf
-    <div class="form-group col-12">
-        <label for="milestoneDate">due date</label>
-        <input type="date" id="milestone-datePicker" name="datePicker" class="form-control" id="milestoneDate">
-        <label for="milestoneDesc">Description</label>
-        <input type="text" id="milestone-description-field" name="Decription" class="form-control" id="milestoneDesc">
-        <div class="row mt-3">
-            <!-- href= route('milestone.create') -->
-            <button id="milestone-create-button" type="button" class="btn btn-primary mt-3">Create Milestone</button>
-        </div>
+<tr> <!-- action="route("milestone.store")..." -->
+    <form>
+        @csrf
+        <!-- label for=""milestone-datePicker">due date</label TODO put in <th> -->
+        <td>
+            <input type="date" id="milestone-datePicker" name="datePicker" class="form-control">
+        </td>
+        <!-- label for="milestone-description-field">Description</label -->
+        <td>
+            <input type="text" id="milestone-description-field" name="Decription" class="form-control">
+        </td>
 
-        <div class="col-12">
+        <!-- div class="col-12">
             <table>
                 <thead>
                     <tr>
@@ -22,9 +22,9 @@
                 <tbody id="milestone-list">
                 </tbody>
             </table>
-        </div>
-    </div>
-    <script language="javascript">
+        </div -->
+    </form>
+    <!-- script language="javascript">
         // add element to the list of milestone
         let i = 0; // milestone index
         document.getElementById("milestone-create-button").addEventListener('click', function() {
@@ -40,8 +40,10 @@
             let row_id = "milestone-" + i;
             tr.setAttribute("id", row_id);
 
-            // create conteant of the table
-            // recover data from input
+            // create content of the table --------------- \\
+
+            // create fields for the user to enter the milestone values
+            // <input type="date" id="milestone-datePicker" name="datePicker" class="form-control" id="milestoneDate">
             let date = document.getElementById('milestone-datePicker').value;
             let description = document.getElementById('milestone-description-field').value;
 
@@ -70,5 +72,5 @@
 
             ++i;
         });
-    </script>
-</form>
+    </script -->
+</tr>

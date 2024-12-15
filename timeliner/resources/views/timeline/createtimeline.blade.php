@@ -30,21 +30,11 @@
                             </div>
                             <div class="form-group col-12">
                                 <div class="row mt-3">
-                                    <div class="form-group col-6">
-                                        <label for="node-creation-button">add node</label>
-                                        <button class="btn btn-primary" name="node-creation-button" id="node-creation-button" type="button" class="btn btn-primary mt-3">+</button>
-                                    </div>
                                 </div>
-                                <div id="node-creation-form" style="display: none;">
-                                    @include('timeline.partials.nodecreate')
-                                </div>
-                                <script>
-                                    // JavaScript to toggle the div visibility
-                                    document.getElementById('node-creation-button').addEventListener('click', function() {
-                                        let hiddenForm = document.getElementById('node-creation-form');
-                                        hiddenForm.style.display = hiddenForm.style.display === 'none' ? 'block' : 'none';
-                                    });
-                                </script>
+
+                            </div>
+                            <div id="node-creation-form" class="form-group col-12">
+                                @include('timeline.partials.nodecreate')
                             </div>
 
                             <div class="form-group col-12">
