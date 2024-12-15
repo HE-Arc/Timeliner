@@ -7,8 +7,8 @@ let ni = 0; // node index
 let mi = 0; // milestone index
 
 //add a row to a list of milestone creation form
-function addMilestone(milestone_list_id) {
-    let ms_id = "ms-" + ni + "-" + mi; // the id of the milestone depend of it's parent node
+function addMilestone(milestone_list_id, nodeIndex, nodeMilestoneCount) {
+    const ms_id = `ms-${nodeIndex}-${nodeMilestoneCount}` // the id of the milestone depend of it's parent node
 
     // declare the component of the row
     let tr_ms = document.createElement("tr");
@@ -24,18 +24,20 @@ function addMilestone(milestone_list_id) {
 
     // set attribute of ms_label
     ms_label.setAttribute("for", ms_id);
-    ms_label.innerHTML += "Milestone";
+    ms_label.innerHTML += `Milestone for Node ${nodeIndex}`;
 
     // set attribute of the date_input
     date_input.setAttribute("type", "date");
-    date_input.setAttribute("id", "milestone-datePicker");
-    date_input.setAttribute("name", "datePicker");
+    date_input.setAttribute("id", `milestone-datePicker-${nodeIndex}-${mi}`);
+    //date_input.setAttribute("name", "datePicker");
+    date_input.setAttribute("name", `nodes[${nodeIndex}][milestones][${nodeMilestoneCount}][date]`);
     date_input.setAttribute("class", "form-control");
 
     // set attribute of the desc_input
     desc_input.setAttribute("type", "text");
-    desc_input.setAttribute("id", "milestone-description-field");
-    desc_input.setAttribute("name", "description");
+    desc_input.setAttribute("id", `milestone-description--${nodeIndex}-${mi}`);
+    //desc_input.setAttribute("name", "description");
+    desc_input.setAttribute("name", `nodes[${nodeIndex}][milestones][${nodeMilestoneCount}][description]`);
     desc_input.setAttribute("class", "form-control");
 
     // create delete button
@@ -101,6 +103,8 @@ document.getElementById("node-create-button").addEventListener('click', function
     name_field.setAttribute("type", "text");
     name_field.setAttribute("class", "form-control");
     name_field.setAttribute("id", name_field_ID);
+    name_field.setAttribute("name", `nodes[${ni}][name]`); // Assign the correct name attribute for form submission
+
 
     // create label for the input
     // <label for="inputDescription">Description</label>
@@ -128,9 +132,12 @@ document.getElementById("node-create-button").addEventListener('click', function
     add_milestone_button.setAttribute("id", milestone_create_button_id);
     add_milestone_button.innerHTML += 'create milestone';
 
+    let current_ni_number = ni;
+    let nodeMilestoneCount = 0;
+
     // add listener to 'add milestone'
     add_milestone_button.addEventListener('click', function() {
-        addMilestone(milestone_list_id);
+        addMilestone(milestone_list_id, current_ni_number, nodeMilestoneCount++);
     });
 
     // create delete button

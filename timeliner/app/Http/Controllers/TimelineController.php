@@ -6,6 +6,7 @@ use App\Models\Timeline;
 use App\Models\Ownership;
 use App\Models\Comment;
 use App\Models\Node;
+use App\Models\Milestone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -62,19 +63,45 @@ class TimelineController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $request->merge([
             'private' => $request->has('private'),
         ]);
 
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:200',
-            'private' => 'required|boolean'
+            'private' => 'required|boolean',
+            'nodes' => 'nullable|array',
+            'nodes.*.name' => 'required|string|max:255',
+            'nodes.*.milestones' => 'nullable|array',
+            'nodes.*.milestones.*.date' => 'required|date',
+            'nodes.*.milestones.*.description' => 'nullable|string|max:255',
         ]);
 
-        $timeline = Timeline::create($request->all());
+        $timeline = Timeline::create(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> $validated['private']]);
         Ownership::create(['id' => $timeline->id . Auth::user()->id]);
+
+        if (!empty($validated['nodes'])) {
+            foreach ($validated['nodes'] as $nodeData) {
+
+                $node = Node::create([
+                    'name'=>$nodeData['name'],
+                    'color'=>'#FFFFFF',
+                    'timeline'=>$timeline->id
+                ]);
+
+                if (!empty($nodeData['milestones'])) {
+                    foreach ($nodeData['milestones'] as $milestoneData) {
+                        Milestone::create([
+                            'date' => $milestoneData['date'],
+                            'description' => $milestoneData['description'] ?? null,
+                            'node' => $node->id
+                        ]);
+                    }
+                }
+            }
+        }
 
         return redirect()->route('timeline.index')
             ->with('success','Timeline created successfully.');
