@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,6 @@ Route::get('/createtimeline', function () {
     return view('timeline.createtimeline');
 })->middleware(['auth', 'verified'])->name('createtimeline');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -28,3 +28,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('timeline', TimelineController::class);
+
+Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+Route::put('comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
