@@ -1,5 +1,7 @@
 @import './timelinestyle.css';
 
+@import './bootstrap-toggle.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,10 +1,10 @@
 import './bootstrap';
 
 import './timelinelistener';
-import '../css/timelinestyle.css';
-
 import './formfunctions';
 import './createformfunctions';
+
+import './bootstrap-toggle.min.js'
 
 
 import Alpine from 'alpinejs';
