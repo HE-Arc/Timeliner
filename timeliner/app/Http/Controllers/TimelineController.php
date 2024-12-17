@@ -128,8 +128,8 @@ class TimelineController extends Controller
     {
         $timeline = Timeline::findOrFail($id);
 
-        if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
-        {
+        if (($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id)))) {
+
             $request->merge([
                 'private' => $request->has('private'),
             ]);
@@ -145,34 +145,68 @@ class TimelineController extends Controller
                 'nodes.*.milestones.*.description' => 'nullable|string|max:255',
             ]);
 
-            $timeline->update(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> $validated['private']]);
+            // Update timeline details
+            $timeline->update([
+                'name' => $validated['name'],
+                'description' => $validated['description'],
+                'private' => $validated['private']
+            ]);
 
+            // Handle nodes
             if (!empty($validated['nodes'])) {
+                // First, delete any nodes that were removed from the form
+                $existingNodeIds = collect($validated['nodes'])->pluck('id')->filter();
+                Node::where('timeline', $timeline->id)
+                    ->whereNotIn('id', $existingNodeIds)
+                    ->delete();
+
+                // Update existing nodes or create new ones
                 foreach ($validated['nodes'] as $nodeData) {
+                    if (isset($nodeData['id'])) {
+                        // Update existing node
+                        $node = Node::findOrFail($nodeData['id']);
+                        $node->update([
+                            'name' => $nodeData['name'],
+                            'color' => '#FFFFFF', // Default color (you can adjust this)
+                        ]);
+                    } else {
+                        // Create new node
+                        $node = Node::create([
+                            'name' => $nodeData['name'],
+                            'color' => '#FFFFFF', // Default color (you can adjust this)
+                            'timeline' => $timeline->id,
+                        ]);
+                    }
 
-                    $node = Node::create([
-                        'name'=>$nodeData['name'],
-                        'color'=>'#FFFFFF', // default color white, TODO: color picker
-                        'timeline'=>$timeline->id
-                    ]);
-
+                    // Handle milestones
                     if (!empty($nodeData['milestones'])) {
                         foreach ($nodeData['milestones'] as $milestoneData) {
-                            Milestone::create([
-                                'date' => $milestoneData['date'],
-                                'description' => $milestoneData['description'] ?? null,
-                                'node' => $node->id
-                            ]);
+                            if (isset($milestoneData['id'])) {
+                                // Update existing milestone
+                                $milestone = Milestone::findOrFail($milestoneData['id']);
+                                $milestone->update([
+                                    'date' => $milestoneData['date'],
+                                    'description' => $milestoneData['description'] ?? null,
+                                ]);
+                            } else {
+                                // Create new milestone
+                                Milestone::create([
+                                    'date' => $milestoneData['date'],
+                                    'description' => $milestoneData['description'] ?? null,
+                                    'node' => $node->id
+                                ]);
+                            }
                         }
                     }
                 }
             }
 
-            return redirect()->route('timeline.edit', $id)
-                ->with('success','Timeline updated successfully.');
+            return redirect()->route('timeline.show', $id)
+                ->with('success', 'Timeline updated successfully.');
         }
 
         return redirect()->route('timeline.index')
             ->withErrors(["You don't have access."]);
     }
+
 }
