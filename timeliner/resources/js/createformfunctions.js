@@ -3,8 +3,10 @@ Author: Brandt Mael
 */
 
 
-let ni = 0; // node index
+let ni = window.ni || 0; // use global ni if set, else defaults to 0
 let mi = 0; // milestone index
+
+window.addMilestone = addMilestone; // makes the function available to the global scope
 
 //add a row to a list of milestone creation form
 function addMilestone(milestone_list_id, nodeIndex, nodeMilestoneCount) {
@@ -43,10 +45,10 @@ function addMilestone(milestone_list_id, nodeIndex, nodeMilestoneCount) {
     // create delete button
     let delete_button = document.createElement('button');
     let delete_button_id = "ms-delete-button-" + mi;
-    delete_button.setAttribute("class", "btn btn-primary");
+    delete_button.setAttribute("class", "btn btn-danger bi bi-trash");
     delete_button.setAttribute("type", "button");
     delete_button.setAttribute("id", delete_button_id);
-    delete_button.innerHTML += 'delete';
+    delete_button.innerHTML += ' delete';
 
     // add listener to delete_button
     delete_button.addEventListener('click', function() {
@@ -78,10 +80,10 @@ if (nodeCreateButton) {
     nodeCreateButton.addEventListener('click', function() {
 
     // recover the node table
-    let node_table = document.getElementById('node-list');
+    let node_table = document.getElementById('node-list-body');
 
     // declare new row of milestone table
-    let tr_node_form = document.createElement("div"); // row holding the node form
+    let tr_node_form = document.createElement("tr"); // row holding the node form
     let tr_milestone_table = document.createElement("tr"); // row holding the milestone table
 
     let td_label = document.createElement("td");
@@ -129,10 +131,10 @@ if (nodeCreateButton) {
     // create 'add milestone' button
     let add_milestone_button = document.createElement('button');
     let milestone_create_button_id = "milestone-create-button-" + ni;
-    add_milestone_button.setAttribute("class", "btn btn-primary");
+    add_milestone_button.setAttribute("class", "btn btn-primary bi bi-calendar-plus");
     add_milestone_button.setAttribute("type", "button");
     add_milestone_button.setAttribute("id", milestone_create_button_id);
-    add_milestone_button.innerHTML += 'create milestone';
+    add_milestone_button.innerHTML += ' create milestone';
 
     let current_ni_number = ni;
     let nodeMilestoneCount = 0;
@@ -145,10 +147,10 @@ if (nodeCreateButton) {
     // create delete button
     let delete_button = document.createElement('button');
     let delete_button_id = "node-delete-button-" + ni;
-    delete_button.setAttribute("class", "btn btn-primary");
+    delete_button.setAttribute("class", "btn btn-danger bi bi-trash ");
     delete_button.setAttribute("type", "button");
     delete_button.setAttribute("id", delete_button_id);
-    delete_button.innerHTML += 'delete';
+    delete_button.innerHTML += ' delete';
 
     // add listener to delete_button
     delete_button.addEventListener('click', function() {
