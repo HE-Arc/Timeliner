@@ -2,7 +2,7 @@
 @csrf
     <div class="form-group ">
 
-        <button id="node-create-button" type="button" class="btn btn-primary mt-3">Add Node</button>
+        <button id="node-create-button" type="button" class="btn btn-primary mt-3 bi bi-node-plus"> Add Node</button>
 
         <div class="col-12">
             <table>
@@ -33,15 +33,15 @@
                                             value="{{ $node['name'] ?? '' }}">
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary"
+                                        <button type="button" class="btn btn-primary bi bi-calendar-plus"
                                                 onclick="addMilestone('ms-list-{{ $nodeIndex }}', {{ $nodeIndex }}, {{ $nodeMilestoneCounts[$nodeIndex] ?? 0 }});">
-                                            create milestone
+                                             create milestone
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary"
+                                        <button type="button" class="btn btn-danger bi bi-trash"
                                                 onclick="document.getElementById('node-{{ $nodeIndex }}').remove();">
-                                            delete
+                                             delete
                                         </button>
                                     </td>
                                 </tr>
@@ -66,9 +66,9 @@
                                                                 value="{{ $milestone['description'] ?? '' }}">
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-primary"
+                                                            <button type="button" class="btn btn-danger danger bi bi-trash"
                                                                     onclick="document.getElementById('ms-{{ $nodeIndex }}-{{ $milestoneIndex }}').remove();">
-                                                                delete
+                                                                 delete
                                                             </button>
                                                         </td>
                                                     </tr>

@@ -15,9 +15,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/createtimeline', function () {
-    return view('timeline.createtimeline');
-})->middleware(['auth', 'verified'])->name('createtimeline');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -27,8 +25,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('timeline', TimelineController::class);
+Route::resource('timeline', TimelineController::class)->middleware(['auth', 'verified']);
 
-Route::post('comment', [CommentController::class, 'store'])->name('comment.store');
-Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
-Route::put('comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+Route::post('comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment.store');
+Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('comment.destroy');
+Route::put('comment/{comment}', [CommentController::class, 'update'])->middleware(['auth', 'verified'])->name('comment.update');

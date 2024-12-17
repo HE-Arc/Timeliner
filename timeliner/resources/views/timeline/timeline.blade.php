@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @auth
-                    @if ($isOwner) <a href="timeline/{{ $timeline->id }}/edit" class="btn btn-primary bi bi-pencil"> Edit</a> @endif
+                    @if ($isOwner) <a href="{{ $timeline->id }}/edit" class="btn btn-primary bi bi-pencil"> Edit</a> @endif
                     @endauth
 
                     <!-- Timeline show section -->

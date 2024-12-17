@@ -106,4 +106,73 @@ class TimelineController extends Controller
         return redirect()->route('timeline.index')
             ->with('success','Timeline created successfully.');
     }
+
+    public function edit($id)
+    {
+        $timeline = Timeline::findOrFail($id);
+
+        if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
+        {
+            $nodes = Node::where('timeline','=',$timeline->id)
+                ->with('milestones')
+                ->get();
+
+            return view('timeline.edit', ['timeline' => $timeline, 'nodes' => $nodes]);
+        }
+
+        return redirect()->route('timeline.index')
+            ->withErrors(["You don't have access."]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $timeline = Timeline::findOrFail($id);
+
+        if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
+        {
+            $request->merge([
+                'private' => $request->has('private'),
+            ]);
+
+            $validated = $request->validate([
+                'name' => 'required|max:50',
+                'description' => 'required|max:200',
+                'private' => 'required|boolean',
+                'nodes' => 'nullable|array',
+                'nodes.*.name' => 'required|string|max:255',
+                'nodes.*.milestones' => 'nullable|array',
+                'nodes.*.milestones.*.date' => 'required|date',
+                'nodes.*.milestones.*.description' => 'nullable|string|max:255',
+            ]);
+
+            $timeline->update(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> $validated['private']]);
+
+            if (!empty($validated['nodes'])) {
+                foreach ($validated['nodes'] as $nodeData) {
+
+                    $node = Node::create([
+                        'name'=>$nodeData['name'],
+                        'color'=>'#FFFFFF', // default color white, TODO: color picker
+                        'timeline'=>$timeline->id
+                    ]);
+
+                    if (!empty($nodeData['milestones'])) {
+                        foreach ($nodeData['milestones'] as $milestoneData) {
+                            Milestone::create([
+                                'date' => $milestoneData['date'],
+                                'description' => $milestoneData['description'] ?? null,
+                                'node' => $node->id
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            return redirect()->route('timeline.edit', $id)
+                ->with('success','Timeline updated successfully.');
+        }
+
+        return redirect()->route('timeline.index')
+            ->withErrors(["You don't have access."]);
+    }
 }

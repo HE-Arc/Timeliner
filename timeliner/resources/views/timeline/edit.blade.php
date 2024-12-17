@@ -3,18 +3,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create timeline') }}
+            {{ __('Edit timeline ') . $timeline->name }}
         </h2>
     </x-slot>
 
-    <form action="{{ route("timeline.store") }}" method="POST">
+    <form action="{{ route("timeline.update", $timeline->id) }}" method="POST">
         @csrf
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-0 offset-lg-3">
                 <div class="card">
                     <div class="card-header">
-                    New timeline
+                    Edit timeline
                     </div>
                     <div class="card-body">
                         <div class="form-row">
@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group col-6">
-                                <button class="btn btn-primary" href={{ route('timeline.create') }} type="submit" class="btn btn-primary mt-3">Add</button>
+                                <button class="btn btn-primary" href={{ route('timeline.create') }} type="submit" class="btn btn-primary mt-3 "><i class="bi bi-plus-lg"></i> Add</button>
                             </div>
                             <div class="form-group col-6">
                             </div>
@@ -54,8 +54,6 @@
             </div>
         </div>
     </form>
-
-
 </x-app-layout>
 
 
