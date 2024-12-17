@@ -76,7 +76,7 @@ class TimelineController extends Controller
             'nodes.*.name' => 'required|string|max:255',
             'nodes.*.milestones' => 'nullable|array',
             'nodes.*.milestones.*.date' => 'required|date',
-            'nodes.*.milestones.*.description' => 'nullable|string|max:255',
+            'nodes.*.milestones.*.description' => 'required|string|max:255',
         ]);
 
         $timeline = Timeline::create(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> !$validated['private']]);
@@ -142,7 +142,7 @@ class TimelineController extends Controller
                 'nodes.*.name' => 'required|string|max:255',
                 'nodes.*.milestones' => 'nullable|array',
                 'nodes.*.milestones.*.date' => 'required|date',
-                'nodes.*.milestones.*.description' => 'nullable|string|max:255',
+                'nodes.*.milestones.*.description' => 'required|string|max:255',
             ]);
 
             // Update timeline details
@@ -154,7 +154,7 @@ class TimelineController extends Controller
 
             // Handle nodes
             if (!empty($validated['nodes'])) {
-                // First, delete any nodes that were removed from the form
+                // Delete nodes removed from the form
                 $existingNodeIds = collect($validated['nodes'])->pluck('id')->filter();
                 Node::where('timeline', $timeline->id)
                     ->whereNotIn('id', $existingNodeIds)
@@ -167,13 +167,13 @@ class TimelineController extends Controller
                         $node = Node::findOrFail($nodeData['id']);
                         $node->update([
                             'name' => $nodeData['name'],
-                            'color' => '#FFFFFF', // Default color (you can adjust this)
+                            'color' => '#FFFFFF', // Default color)
                         ]);
                     } else {
                         // Create new node
                         $node = Node::create([
                             'name' => $nodeData['name'],
-                            'color' => '#FFFFFF', // Default color (you can adjust this)
+                            'color' => '#FFFFFF', // Default color
                             'timeline' => $timeline->id,
                         ]);
                     }
@@ -209,4 +209,17 @@ class TimelineController extends Controller
             ->withErrors(["You don't have access."]);
     }
 
+    public function destroy($id)
+    {
+        $timeline = Timeline::findOrFail($id);
+
+        if (($timeline != null) && (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))) {
+            $timeline->delete();
+            return redirect()->route('timeline.index')
+                ->with('success', 'Timeline deleted successfully.');
+        }
+
+        return redirect()->route('timeline.index')
+            ->withErrors(["You don't have the necessary rights."]);
+    }
 }

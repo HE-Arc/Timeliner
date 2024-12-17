@@ -19,10 +19,10 @@
             <button type="submit" class="btn btn-success bi bi-check2"> Confirm Edit</button>
         </form>
 
-        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?');">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger bi bi-trash delete-button"> Delete</button>
+            <button type="submit" class="btn btn-danger bi bi-trash"> Delete</button>
         </form>
         @endif
         @endauth
