@@ -13,12 +13,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleElementById(event.target.dataset.target);
         });
     });
-
-    document.querySelectorAll('.delete-button').forEach((button) => {
-        button.addEventListener('click', (event) => {
-            if (!confirmDelete()) {
-                event.preventDefault();
-            }
-        });
-    });
 });
