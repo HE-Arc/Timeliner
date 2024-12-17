@@ -44,7 +44,5 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentSeeder::class);
         $this->call(NodeSeeder::class);
         $this->call(MilestoneSeeder::class);
-
-        DB::statement('PRAGMA foreign_keys=ON;');
     }
 }

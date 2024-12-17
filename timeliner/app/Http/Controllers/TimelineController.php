@@ -79,7 +79,7 @@ class TimelineController extends Controller
             'nodes.*.milestones.*.description' => 'nullable|string|max:255',
         ]);
 
-        $timeline = Timeline::create(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> $validated['private']]);
+        $timeline = Timeline::create(['name' => $validated['name'], 'description' => $validated['description'], 'private'=> !$validated['private']]);
         Ownership::create(['id' => $timeline->id . Auth::user()->id]);
 
         if (!empty($validated['nodes'])) {
@@ -111,7 +111,7 @@ class TimelineController extends Controller
     {
         $timeline = Timeline::findOrFail($id);
 
-        if(($timeline != null) && (!$timeline->private || (Auth::check() && Ownership::find($timeline->id . Auth::user()->id))))
+        if(($timeline != null) && (Auth::check() && Ownership::find($timeline->id . Auth::user()->id)))
         {
             $nodes = Node::where('timeline','=',$timeline->id)
                 ->with('milestones')
@@ -120,7 +120,7 @@ class TimelineController extends Controller
             return view('timeline.edit', ['timeline' => $timeline, 'nodes' => $nodes]);
         }
 
-        return redirect()->route('timeline.index')
+        return redirect()->route('timeline.show', $id)
             ->withErrors(["You don't have access."]);
     }
 
@@ -149,7 +149,7 @@ class TimelineController extends Controller
             $timeline->update([
                 'name' => $validated['name'],
                 'description' => $validated['description'],
-                'private' => $validated['private']
+                'private' => !$validated['private']
             ]);
 
             // Handle nodes
