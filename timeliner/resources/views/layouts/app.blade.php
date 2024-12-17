@@ -32,6 +32,8 @@
                     </div>
                 </header>
             @endisset
+
+            <x-notification/>
             
             <main>
                 {{ $slot }}

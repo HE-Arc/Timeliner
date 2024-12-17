@@ -3,8 +3,10 @@ Author: Brandt Mael
 */
 
 
-let ni = 0; // node index
+let ni = window.ni || 0; // use global ni if set, else defaults to 0
 let mi = 0; // milestone index
+
+window.addMilestone = addMilestone; // makes the function available to the global scope
 
 //add a row to a list of milestone creation form
 function addMilestone(milestone_list_id, nodeIndex, nodeMilestoneCount) {
@@ -78,10 +80,10 @@ if (nodeCreateButton) {
     nodeCreateButton.addEventListener('click', function() {
 
     // recover the node table
-    let node_table = document.getElementById('node-list');
+    let node_table = document.getElementById('node-list-body');
 
     // declare new row of milestone table
-    let tr_node_form = document.createElement("div"); // row holding the node form
+    let tr_node_form = document.createElement("tr"); // row holding the node form
     let tr_milestone_table = document.createElement("tr"); // row holding the milestone table
 
     let td_label = document.createElement("td");

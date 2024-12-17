@@ -4,7 +4,7 @@ import './timelinelistener';
 import './formfunctions';
 import './createformfunctions';
 
-import './bootstrap-toggle.min.js'
+import './bootstrap-toggle.min'
 
 
 import Alpine from 'alpinejs';
