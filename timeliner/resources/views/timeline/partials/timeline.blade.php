@@ -1,6 +1,3 @@
-@php
-use App\Models\Ownership;
-@endphp
 <div class="timeline-for-list-template">
     <div class="row align-items-stretch d-flex">
         <div class="col-11 p-0">
@@ -18,7 +15,7 @@ use App\Models\Ownership;
         </div>
 
         @auth
-        @if (Ownership::find($timeline->id . Auth::user()->id))
+        @if($timelinesWithOwnership->contains($timeline->id))
             <form class="d-flex align-items-stretch mb-4" action="{{ route('timeline.destroy', $timeline->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this timeline?');">
                 @csrf
                 @method('DELETE')
