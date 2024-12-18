@@ -2,7 +2,7 @@
     <h5 class="card-header">{{ $comment->user->name }}</h5>
     <div class="card-body">
         <h5 class="card-title">{{ $comment->created_at }} (UTC)</h5>
-        <p class="card-text">{{ $comment->comment }}</p>
+        <p class="card-text" style="white-space: pre-wrap">{{ $comment->comment }}</p>
 
         @auth
         @if ($comment->user_id == Auth::id())
