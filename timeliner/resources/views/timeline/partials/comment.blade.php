@@ -5,7 +5,7 @@
         <p class="card-text" style="white-space: pre-wrap">{{ $comment->comment }}</p>
 
         @auth
-        @if ($comment->user_id == Auth::id())
+        @if ($comment->user_id == Auth::id() || $isOwner)
         <button class="btn btn-primary bi bi-pencil toggle-button" data-target="editComment{{ $comment->id }}"> Edit Comment</button>
         <form id="editComment{{ $comment->id }}" class="hidden" action="{{ route('comment.update', $comment->id) }}" method="POST">
             @csrf

@@ -16,15 +16,31 @@ use function Psy\debug;
 
 class TimelineController extends Controller
 {
+    public function timelinesWithOwnership()
+    {
+        $timelines = Timeline::all();
+
+        return $timelines->filter(function ($timeline) {
+            return Auth::check() && Ownership::find($timeline->id . Auth::user()->id);
+        });
+    }
+
     public function index()
     {
         $timelines = Timeline::all();
-        return view('index', ['timelines' => $timelines]);
+
+        $timelinesWithOwnership = $this->timelinesWithOwnership();
+
+        return view('index', ['timelines' => $timelines, 'timelinesWithOwnership' => $timelinesWithOwnership]);
     }
 
     public function timelinelist()
     {
-        return view('timeline.timelinelist');
+        $timelinesWithOwnership = $this->timelinesWithOwnership();
+
+        $timelines = $timelinesWithOwnership;
+
+        return view('dashboard', ['timelines' => $timelines, 'timelinesWithOwnership' => $timelinesWithOwnership]);
     }
 
     public function show($id)
