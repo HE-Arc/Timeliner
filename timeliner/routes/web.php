@@ -25,7 +25,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('timeline', TimelineController::class)->middleware(['auth', 'verified']);
+// Make sure only timeline.show route is accessible by guest users
+Route::resource('timeline', TimelineController::class)
+    ->except(['show'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('timeline/{timeline}', [TimelineController::class, 'show'])->name('timeline.show');
+
 
 Route::post('comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment.store');
 Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('comment.destroy');
