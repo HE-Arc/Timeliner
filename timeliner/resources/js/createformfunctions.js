@@ -95,7 +95,7 @@ if (nodeCreateButton) {
     let row_id = "node-" + ni;
     let ms_table_id = "ms-table-" + ni;
     tr_node_form.setAttribute("id", row_id);
-    tr_node_form.setAttribute("class", "form-row mt-3");
+    tr_node_form.setAttribute("class", "form-row mt-3 border-4 border-blue-100 rounded-md p-2");
     tr_milestone_table.setAttribute("id", ms_table_id);
     tr_milestone_table.setAttribute("class", "form-group col-9");
 

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 use function Psy\debug;
 
@@ -22,11 +23,6 @@ class TimelineController extends Controller
         return view('index', ['timelines' => $timelines]);
     }
 
-    public function timelinelist()
-    {
-        return view('timeline.timelinelist');
-    }
-
     public function show($id)
     {
         $timeline = Timeline::findOrFail($id);
@@ -36,8 +32,6 @@ class TimelineController extends Controller
             $nodes = Node::where('timeline','=',$timeline->id)
                 ->with('milestones')
                 ->get();
-
-            Log::info('nodes: '.$nodes->count());
 
             $comments = Comment::where('timeline_id', '=', $timeline->id)
                 ->with('user')
@@ -54,6 +48,21 @@ class TimelineController extends Controller
 
         return redirect()->route('timeline.index')
             ->withErrors(["You don't have access."]);
+    }
+
+    public function showDashboard()
+    {
+        $user = Auth::user();
+
+        $timelines =  DB::select("
+            SELECT timelines.*
+            FROM timelines
+            JOIN ownerships
+            ON CAST(SUBSTR(ownerships.id, 1, LENGTH(ownerships.id) - LENGTH(?)) AS INTEGER) = timelines.id
+            WHERE CAST(SUBSTR(ownerships.id, -LENGTH(?)) AS INTEGER) = ?
+        ", [$user->id, $user->id, $user->id]);
+
+        return view('dashboard',['timelines' => $timelines]);
     }
 
     public function create()

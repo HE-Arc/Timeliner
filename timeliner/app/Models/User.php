@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function ownerships()
+    {
+        return $this->hasMany(Ownership::class, 'id', 'id');
+    }
 }

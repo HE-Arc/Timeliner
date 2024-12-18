@@ -28,31 +28,34 @@
                         <input type="range" id="timelineSlider" min="30" max="200" value="100" step="1">
                         <span id="timelineWidthValue">100</span>
                     </div>
+                </div>
+            </div>
 
+            <br>
 
-                    <!-- Comments to this timeline section -->
-                    <div>
-                        <h2>Comments</h2>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <!-- Comments to this timeline section -->
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h2>Comments</h2>
 
-                        <!-- Add comment to this timeline section -->
-                        <button class="btn btn-primary bi bi-plus-lg toggle-button" data-target="addComment"> Add comment</button>
+                    <!-- Add comment to this timeline section -->
+                    <button class="btn btn-primary bi bi-plus-lg toggle-button" data-target="addComment"> Post comment</button>
 
-                        <form id="addComment" class ="hidden" action="{{ route("comment.store") }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
-                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                            <div class="form-group">
-                                <label for="inputComment">New comment</label>
-                                <textarea name="comment" rows="5" class="form-control" id="inputComment">{{ old('comment') }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary bi bi-plus-lg"> Add</button>
-                        </form>
- 
-                        <!-- Show comments to this timeline section -->
-                        @foreach ($comments as $comment)
-                            @include("timeline.partials.comment", ["comment"=>$comment])
-                        @endforeach
-                    </div>
+                    <form id="addComment" class ="hidden" action="{{ route("comment.store") }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
+                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                        <div class="form-group">
+                            <label for="inputComment">New comment</label>
+                            <textarea name="comment" rows="5" class="form-control" id="inputComment">{{ old('comment') }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary bi bi-plus-lg"> Add</button>
+                    </form>
+
+                    <!-- Show comments to this timeline section -->
+                    @foreach ($comments as $comment)
+                        @include("timeline.partials.comment", ["comment"=>$comment])
+                    @endforeach
                 </div>
             </div>
         </div>

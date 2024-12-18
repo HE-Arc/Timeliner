@@ -2,7 +2,8 @@
 @csrf
     <div class="form-group ">
 
-        <button id="node-create-button" type="button" class="btn btn-primary mt-3 bi bi-node-plus"> Add Node</button>
+
+        <h3>Nodes</h3>
 
         <div class="col-12">
             <table>
@@ -82,5 +83,8 @@
                     </table>
                 </div>
             </table>
+
+            <button id="node-create-button" type="button" class="btn btn-primary mt-3 bi bi-node-plus"> Add Node</button>
+
         </div>
     </div>

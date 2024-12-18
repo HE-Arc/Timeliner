@@ -1,6 +1,8 @@
     <div class="form-group ">
-        <button id="node-create-button" type="button" class="btn btn-primary mt-3 bi bi-node-plus"> Add Node</button>
-        <div class="col-12">
+       <div class="col-12">
+
+        <h3>Nodes</h3>
+
             <table>
                 <div id="node-list">
                     <table>
@@ -19,7 +21,7 @@
                                 window.nodeMilestoneCounts = @json($nodeMilestoneCounts);
                             </script>
                             @foreach ($currentNodes as $nodeIndex => $node)
-                                <tr id="node-{{ $nodeIndex }}" class="form-row mt-3" data-index="{{ $nodeIndex }}">
+                                <tr id="node-{{ $nodeIndex }}" class="form-row mt-3 border-4 border-blue-100 rounded-md p-2" data-index="{{ $nodeIndex }}">
                                     <td>
                                         <label for="nodeTitle-{{ $nodeIndex }}">Description</label>
                                     </td>
@@ -78,5 +80,7 @@
                     </table>
                 </div>
             </table>
+            <button id="node-create-button" type="button" class="btn btn-primary mt-3 bi bi-node-plus"> Add Node</button>
+
         </div>
     </div>
