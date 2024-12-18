@@ -34,7 +34,7 @@
                                 </div>
 
                             </div>
-                            <div id="node-creation-form" class="form-group col-12">
+                            <div id="node-creation-form" class="form-group col-12 border-2 border-grey-200 rounded-md p-2">
                                 @include('timeline.partials.nodecreate')
                             </div>
 

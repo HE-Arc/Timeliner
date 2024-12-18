@@ -64,17 +64,11 @@ class TimelineController extends Controller
 
     public function showDashboard()
     {
-        $user = Auth::user();
+        $timelines =  $this->timelinesWithOwnership();
 
-        $timelines =  DB::select("
-            SELECT timelines.*
-            FROM timelines
-            JOIN ownerships
-            ON CAST(SUBSTR(ownerships.id, 1, LENGTH(ownerships.id) - LENGTH(?)) AS INTEGER) = timelines.id
-            WHERE CAST(SUBSTR(ownerships.id, -LENGTH(?)) AS INTEGER) = ?
-        ", [$user->id, $user->id, $user->id]);
+        $timelinesWithOwnership = $this->timelinesWithOwnership();
 
-        return view('dashboard',['timelines' => $timelines]);
+        return view('dashboard',['timelines' => $timelines, 'timelinesWithOwnership' => $timelinesWithOwnership]);
     }
 
     public function create()

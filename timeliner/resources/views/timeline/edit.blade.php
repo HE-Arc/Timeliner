@@ -32,7 +32,7 @@
                                 </div>
 
                             </div>
-                            <div id="node-edit-form" class="form-group col-12">
+                            <div id="node-edit-form" class="form-group col-12  border-2 border-grey-200 rounded-md p-2">
                                 @include('timeline.partials.nodeedit', ['nodes' => $nodes])
                             </div>
 

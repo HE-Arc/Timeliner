@@ -11,9 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @include("timeline.partials.timelinelist", $timelines)
-                </div>
             </div>
         </div>
 
